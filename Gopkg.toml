@@ -44,7 +44,7 @@
 [[override]]
   name = "github.com/opencontainers/runc"
   source = "github.com/hashicorp/runc"
-  branch = "nomad"
+  branch = "nomad-20190219"
 
 [prune]
   go-tests = true

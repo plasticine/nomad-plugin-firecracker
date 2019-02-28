@@ -387,7 +387,7 @@
   revision = "6e968a3fcdcbab092f5307fd0d85479d5af1e4dc"
 
 [[projects]]
-  digest = "1:c3506421d8f689be6e7cc1bbe86f133024c4522ca71e91dd0995d909dfb74a37"
+  digest = "1:c06857c1e6caaffdd8a95d641f5c7666885c707574af1dfc6b5044667aba16e6"
   name = "github.com/hashicorp/nomad"
   packages = [
     "acl",
@@ -419,8 +419,8 @@
     "plugins/shared/structs/proto",
   ]
   pruneopts = "UT"
-  revision = "a0f4b11c1cfc4ff8564a801eb9d0a811a16db208"
-  version = "v0.9.0-beta2"
+  revision = "4d34c838bb9c0a66d577560300cb899ac1b432ba"
+  version = "v0.9.0-beta3"
 
 [[projects]]
   branch = "master"
@@ -547,8 +547,8 @@
   version = "v1.0.0"
 
 [[projects]]
-  branch = "nomad"
-  digest = "1:8a292a5296d58ebe3a556c1591cafa334a695d4885bf96b9d91f946f10071d42"
+  branch = "nomad-20190219"
+  digest = "1:391796f0bbe76cd641dd01222eec8d1d90d76321597602e5a5f07d80be5c6976"
   name = "github.com/opencontainers/runc"
   packages = [
     "libcontainer",
@@ -570,7 +570,7 @@
     "libcontainer/utils",
   ]
   pruneopts = "UT"
-  revision = "1c451893cc218c482a7338a98f11306d90f0ee4b"
+  revision = "369b920277d27630441336775cd728bc0f19e496"
   source = "github.com/hashicorp/runc"
 
 [[projects]]
@@ -640,12 +640,9 @@
   revision = "bb4de0191aa41b5507caa14b0650cdbddcd9280b"
 
 [[projects]]
-  digest = "1:946f412cb4d5b332ab8564b414496e80fa24d3e34b2702110311da89252f9f95"
+  digest = "1:87c2e02fb01c27060ccc5ba7c5a407cc91147726f8f40b70cceeedbc52b1f3a8"
   name = "github.com/sirupsen/logrus"
-  packages = [
-    ".",
-    "hooks/test",
-  ]
+  packages = ["."]
   pruneopts = "UT"
   revision = "e1e72e9de974bd926e5c56f83753fba2df402ce5"
   version = "v1.3.0"
@@ -874,7 +871,6 @@
     "github.com/hashicorp/nomad/plugins/shared/hclspec",
     "github.com/hashicorp/nomad/plugins/shared/structs",
     "github.com/sirupsen/logrus",
-    "github.com/sirupsen/logrus/hooks/test",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
