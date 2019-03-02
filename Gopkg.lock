@@ -118,7 +118,7 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:2b485ed23cea2f62fedeb32488dc72359e61130ffef38107a18154f9d1cfb057"
+  digest = "1:73395181b22133c5766a193ed645a7efb1f7136e3ae88d29fed219e986b626de"
   name = "github.com/firecracker-microvm/firecracker-go-sdk"
   packages = [
     ".",
@@ -127,7 +127,7 @@
     "client/operations",
   ]
   pruneopts = "UT"
-  revision = "d54e468f289385d4201e74d3ae6081a8db3cbbe6"
+  revision = "e5695db10609a221fbd186ffa4429e74d4ffd00c"
 
 [[projects]]
   branch = "master"
@@ -267,14 +267,6 @@
   version = "v1.1.0"
 
 [[projects]]
-  digest = "1:236d7e1bdb50d8f68559af37dbcf9d142d56b431c9b2176d41e2a009b664cda8"
-  name = "github.com/google/uuid"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "9b3b1e0f5f99ae461456d768e7d301a7acdaa2d8"
-  version = "v1.1.0"
-
-[[projects]]
   digest = "1:e3f17aa0eb8c151426d23cb767ae50f5b42c46533db3424761ee639b56ab9041"
   name = "github.com/gorhill/cronexpr"
   packages = ["."]
@@ -395,8 +387,7 @@
   revision = "6e968a3fcdcbab092f5307fd0d85479d5af1e4dc"
 
 [[projects]]
-  branch = "master"
-  digest = "1:453f5c44c6449176839aa728bbd5bf5295ee5d81eac1396a1a250260cd295443"
+  digest = "1:c06857c1e6caaffdd8a95d641f5c7666885c707574af1dfc6b5044667aba16e6"
   name = "github.com/hashicorp/nomad"
   packages = [
     "acl",
@@ -428,7 +419,8 @@
     "plugins/shared/structs/proto",
   ]
   pruneopts = "UT"
-  revision = "eecae582c20d0fb206a25910c5bffe9004ad6de0"
+  revision = "4d34c838bb9c0a66d577560300cb899ac1b432ba"
+  version = "v0.9.0-beta3"
 
 [[projects]]
   branch = "master"
@@ -555,6 +547,7 @@
   version = "v1.0.0"
 
 [[projects]]
+  branch = "nomad-20190219"
   digest = "1:391796f0bbe76cd641dd01222eec8d1d90d76321597602e5a5f07d80be5c6976"
   name = "github.com/opencontainers/runc"
   packages = [
@@ -870,7 +863,6 @@
   input-imports = [
     "github.com/firecracker-microvm/firecracker-go-sdk",
     "github.com/firecracker-microvm/firecracker-go-sdk/client/models",
-    "github.com/google/uuid",
     "github.com/hashicorp/go-hclog",
     "github.com/hashicorp/nomad/drivers/shared/executor",
     "github.com/hashicorp/nomad/plugins",
@@ -878,6 +870,7 @@
     "github.com/hashicorp/nomad/plugins/drivers",
     "github.com/hashicorp/nomad/plugins/shared/hclspec",
     "github.com/hashicorp/nomad/plugins/shared/structs",
+    "github.com/sirupsen/logrus",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
