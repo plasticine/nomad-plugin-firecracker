@@ -663,15 +663,14 @@
   revision = "0053ebfd9d0ee06ccefbfe17072021e1d4acebee"
 
 [[projects]]
-  digest = "1:2d9d06cb9d46dacfdbb45f8575b39fc0126d083841a29d4fbf8d97708f43107e"
+  digest = "1:dc80b374c86133656de26039a4ba7b39137761bdf1136acd3c0454cde4ed9810"
   name = "github.com/vishvananda/netlink"
   packages = [
     ".",
     "nl",
   ]
   pruneopts = "UT"
-  revision = "a2ad57a690f3caf3015351d2d6e1c0b95c349752"
-  version = "v1.0.0"
+  revision = "c2a3de3b38bd00f07290c3c5e12b4dbc04ec8666"
 
 [[projects]]
   branch = "master"
@@ -865,12 +864,14 @@
     "github.com/firecracker-microvm/firecracker-go-sdk/client/models",
     "github.com/hashicorp/go-hclog",
     "github.com/hashicorp/nomad/drivers/shared/executor",
+    "github.com/hashicorp/nomad/helper/uuid",
     "github.com/hashicorp/nomad/plugins",
     "github.com/hashicorp/nomad/plugins/base",
     "github.com/hashicorp/nomad/plugins/drivers",
     "github.com/hashicorp/nomad/plugins/shared/hclspec",
     "github.com/hashicorp/nomad/plugins/shared/structs",
     "github.com/sirupsen/logrus",
+    "github.com/vishvananda/netlink",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

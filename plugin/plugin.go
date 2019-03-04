@@ -238,6 +238,8 @@ func (d *Driver) StartTask(cfg *drivers.TaskConfig) (*drivers.TaskHandle, *drive
 		return nil, nil, fmt.Errorf("task with ID %q already started", cfg.ID)
 	}
 
+	d.logger.Debug("starting task", "id", cfg.ID)
+
 	ctx := context.Background()
 	handle := drivers.NewTaskHandle(taskHandleVersion)
 
@@ -306,6 +308,33 @@ func (d *Driver) StartTask(cfg *drivers.TaskConfig) (*drivers.TaskHandle, *drive
 		BootArgs:        config.KernelBootArgs,
 	}
 
+	d.logger.Debug("-------------------------------------------------------------")
+
+	tapNetwork, err := createTapNetwork(0, cfg.AllocID)
+	if err != nil {
+		d.logger.Error("Failed to create TAP network interface", "err", err)
+		return nil, nil, err
+	}
+
+	d.logger.Debug("Created TAP network interface NIC", "name", tapNetwork.VirtIface.Name, "addr", tapNetwork.VirtIface.HardAddr)
+
+	d.logger.Debug("tapNetwork", fmt.Sprintf("%#v", tapNetwork))
+
+	ifaceCfg := models.NetworkInterface{
+		IfaceID:           firecracker.String(tapNetwork.VirtIface.Name), // TODO Work out how to store these...
+		HostDevName:       firecracker.String(tapNetwork.TapIface.Iface.Name),
+		GuestMac:          tapNetwork.VirtIface.HardAddr,
+		AllowMmdsRequests: true,
+
+		// TODO: Work out how to handle this.
+		// RxRateLimiter
+		// TxRateLimiter
+	}
+
+	d.logger.Debug("ifaceCfg", fmt.Sprintf("%#v", ifaceCfg))
+
+	d.logger.Debug("-------------------------------------------------------------")
+
 	machineCfg := models.MachineConfiguration{
 		VcpuCount: cpuCount,
 		// TODO: Figure this out
@@ -326,18 +355,35 @@ func (d *Driver) StartTask(cfg *drivers.TaskConfig) (*drivers.TaskHandle, *drive
 
 	client := firecracker.NewClient(controlSocketPath, logrus.WithField("alloc_id", cfg.AllocID), false)
 
+	d.logger.Debug("Configuring boot source")
 	if resp, err := client.PutGuestBootSource(ctx, &bsrc); err != nil {
 		d.logger.Error("Failed to configure boot source", "resp_error", resp.Error(), "err", err)
 		return nil, nil, err
 	}
 
+	d.logger.Debug("Configuring machine")
 	if resp, err := client.PutMachineConfiguration(ctx, &machineCfg); err != nil {
 		d.logger.Error("Failed to configure machine", "resp_error", resp.Error(), "err", err)
 		return nil, nil, err
 	}
 
+	d.logger.Debug("Configuring root drive")
 	if resp, err := client.PutGuestDriveByID(ctx, *rootDrive.DriveID, &rootDrive); err != nil {
 		d.logger.Error("Failed to configure root drive", "resp_error", resp.Error(), "err", err)
+		return nil, nil, err
+	}
+
+	d.logger.Debug("Configuring network device")
+
+	if resp, err := client.PutGuestNetworkInterfaceByID(ctx, *ifaceCfg.IfaceID, &ifaceCfg); err != nil {
+		d.logger.Error("Failed to configure network", "resp_error", resp.Error(), "err", err)
+		return nil, nil, err
+	}
+
+	metadata := map[string]string{"key": "value"}
+	d.logger.Debug("Configuring metadata via MMDS")
+	if resp, err := client.PutMmds(ctx, metadata); err != nil {
+		d.logger.Error("Failed to set metadata via MMDS", "resp_error", resp.Error(), "err", err)
 		return nil, nil, err
 	}
 

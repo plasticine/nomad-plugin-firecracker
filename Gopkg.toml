@@ -30,8 +30,8 @@
   name = "github.com/firecracker-microvm/firecracker-go-sdk"
 
 [[constraint]]
-  name = "github.com/google/uuid"
-  version = "1.1.0"
+  name = "github.com/vishvananda/netlink"
+  revision = "c2a3de3b38bd00f07290c3c5e12b4dbc04ec8666"
 
 [[constraint]]
   branch = "master"
